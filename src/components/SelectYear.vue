@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>YearResponse</label>
+    <label>Year</label>
     <div class="select-wrapper">
       <span v-if="years.loading" class="loader" />
       <select

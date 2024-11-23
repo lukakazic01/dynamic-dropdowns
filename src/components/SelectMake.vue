@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>MakeResponse</label>
+    <label>Make</label>
     <div class="select-wrapper">
       <span v-if="makes.loading" class="loader" />
       <select

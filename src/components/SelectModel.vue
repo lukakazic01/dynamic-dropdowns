@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>ModelResponse</label>
+    <label>Model</label>
     <div class="select-wrapper">
       <span v-if="models.loading" class="loader" />
       <select
