@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <!-- On real project, I would create BaseSelect component to handle all select inputs -->
-      <SelectYear :years v-if="years" v-model:year="selectedYear" @change="handleYearChange" />
+      <SelectYear :years v-model:year="selectedYear" @change="handleYearChange" />
       <SelectMake :makes v-model:make="selectedMake" @change="handleMakeChange" />
       <SelectModel :models v-model:model="selectedModel" @change="handleModelChange" />
     </div>
