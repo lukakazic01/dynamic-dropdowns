@@ -7,14 +7,20 @@
       <SelectModel :models v-model:model="selectedModel" @change="handleModelChange" />
     </div>
     <div class="reset-btn-wrapper">
-      <button class="reset-btn" @click="handleFilterResetting">Reset filters</button>
+      <button
+        :disabled="isResetFilterBtnDisabled"
+        class="reset-btn"
+        @click="handleFilterResetting"
+      >
+        Reset filters
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import SelectYear from "@/components/SelectYear.vue";
-import {ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import type {ApiResponse} from "@/types/utils/ApiResponse";
 import SelectMake from "@/components/SelectMake.vue";
 import SelectModel from "@/components/SelectModel.vue";
@@ -46,6 +52,8 @@ const models = ref<ModelResponse>({
 const selectedYear = ref<number | null>(null);
 const selectedMake = ref<string | null>(null);
 const selectedModel = ref<string | null>(null);
+
+const isResetFilterBtnDisabled = computed(() => !Object.keys(route.query).length)
 
 if (route.query && route.query.year) {
   const { year, make, model } = route.query;
