@@ -1,4 +1,4 @@
-export interface Model {
+export interface ModelResponse {
     data: CarModel[] | null,
     loading: boolean
     error: boolean

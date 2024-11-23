@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>Year</label>
+    <label>YearResponse</label>
     <div class="select-wrapper">
       <span v-if="years.loading" class="loader" />
       <select
@@ -18,10 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import type {Year} from "@/types/Year";
+import type {YearResponse} from "@/types/YearResponse";
 
 const { years } = defineProps<{
-  years: Year,
+  years: YearResponse,
 }>()
 const emit = defineEmits<{
   change: []

@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>Make</label>
+    <label>MakeResponse</label>
     <div class="select-wrapper">
       <span v-if="makes.loading" class="loader" />
       <select
@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import type {Make} from "@/types/Make";
+import type {MakeResponse} from "@/types/MakeResponse";
 import {computed} from "vue";
 
 const { makes } = defineProps<{
-  makes: Make,
+  makes: MakeResponse,
 }>()
 const emit = defineEmits<{
   change: []

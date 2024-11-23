@@ -19,25 +19,25 @@ import type {ApiResponse} from "@/types/utils/ApiResponse";
 import SelectMake from "@/components/SelectMake.vue";
 import SelectModel from "@/components/SelectModel.vue";
 import {useRoute, useRouter} from "vue-router";
-import type {CarMake, Make} from "@/types/Make";
-import type {CarModel, Model} from "@/types/Model";
-import type {Year} from "@/types/Year";
+import type {CarMake, MakeResponse} from "@/types/MakeResponse";
+import type {CarModel, ModelResponse} from "@/types/ModelResponse";
+import type {YearResponse} from "@/types/YearResponse";
 import http from "@/config/axios";
 
 const router = useRouter();
 const route = useRoute();
 
-const years = ref<Year>({
+const years = ref<YearResponse>({
   data: null,
   loading: false,
   error: false
 });
-const makes = ref<Make>({
+const makes = ref<MakeResponse>({
   data: null,
   loading: false,
   error: false
 });
-const models = ref<Model>({
+const models = ref<ModelResponse>({
   data: null,
   loading: false,
   error: false

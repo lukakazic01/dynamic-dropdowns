@@ -1,6 +1,6 @@
 <template>
   <div class="select-container">
-    <label>Model</label>
+    <label>ModelResponse</label>
     <div class="select-wrapper">
       <span v-if="models.loading" class="loader" />
       <select
@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import type {Model} from "@/types/Model";
+import type {ModelResponse} from "@/types/ModelResponse";
 import {computed} from "vue";
 
 const { models } = defineProps<{
-  models: Model,
+  models: ModelResponse,
 }>()
 const emit = defineEmits<{
   change: []
