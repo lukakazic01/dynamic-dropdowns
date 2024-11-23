@@ -9,7 +9,6 @@
         :disabled="!models.data || models.loading || isInvalid"
         @change="emit('change')"
       >
-        <span v-if="models.loading" class="loader" />
         <option v-if="model === null" :value="null" selected disabled>Select model</option>
         <option v-for="model in models.data" :key="model.model" :value="model.model">{{ model.model }}</option>
       </select>

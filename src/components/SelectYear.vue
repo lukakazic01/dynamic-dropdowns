@@ -5,8 +5,8 @@
       <span v-if="years.loading" class="loader" />
       <select
         v-model.number="year"
-        :disabled="years.loading || years.error"
         :class="[years.error && 'invalid']"
+        :disabled="years.loading || years.error"
         @change="emit('change')"
       >
         <option v-if="year === null" :value="null" selected disabled>Select year</option>
