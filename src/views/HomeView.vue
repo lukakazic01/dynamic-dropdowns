@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container">
+      <!-- On real project, I would create BaseSelect component to handle all select inputs -->
       <SelectYear :years v-if="years" v-model:year="selectedYear" @change="handleYearChange" />
       <SelectMake :makes v-model:make="selectedMake" @change="handleMakeChange" />
       <SelectModel :models v-model:model="selectedModel" @change="handleModelChange" />
@@ -13,8 +14,7 @@
 
 <script setup lang="ts">
 import SelectYear from "@/components/SelectYear.vue";
-import {ref, watch, watchEffect} from "vue";
-import axios from "axios";
+import {ref, watch} from "vue";
 import type {ApiResponse} from "@/types/utils/ApiResponse";
 import SelectMake from "@/components/SelectMake.vue";
 import SelectModel from "@/components/SelectModel.vue";
@@ -22,6 +22,7 @@ import {useRoute, useRouter} from "vue-router";
 import type {CarMake, Make} from "@/types/Make";
 import type {CarModel, Model} from "@/types/Model";
 import type {Year} from "@/types/Year";
+import http from "@/config/axios";
 
 const router = useRouter();
 const route = useRoute();
@@ -60,7 +61,7 @@ if (route.query && route.query.year) {
 (async () => {
   try {
     years.value.loading = true;
-    const { data } = await axios.get<ApiResponse<number[]>>('https://new.api.nexusautotransport.com/api/vehicles/years');
+    const { data } = await http.get<ApiResponse<number[]>>('/api/vehicles/years');
     years.value.data = data.data;
   } catch (e) {
     years.value.error = true;
@@ -72,9 +73,11 @@ if (route.query && route.query.year) {
 const getMakes = async () => {
   try {
     makes.value.loading = true;
-    const { data } = await axios.get<ApiResponse<CarMake[]>>('https://new.api.nexusautotransport.com/api/vehicles/makes', { params: {
+    const { data } = await http.get<ApiResponse<CarMake[]>>('/api/vehicles/makes', {
+      params: {
         year: selectedYear.value
-      }});
+      }
+    });
     makes.value.data = data.data;
   } catch (e) {
     makes.value.error = true;
@@ -86,10 +89,12 @@ const getMakes = async () => {
 const getModels = async () => {
   try {
     models.value.loading = true;
-    const { data } = await axios.get<ApiResponse<CarModel[]>>('https://new.api.nexusautotransport.com/api/vehicles/models', { params: {
+    const { data } = await http.get<ApiResponse<CarModel[]>>('/api/vehicles/models', {
+      params: {
         year: selectedYear.value,
         make: selectedMake.value
-      }})
+      }
+    })
     models.value.data = data.data;
   } catch (e) {
     models.value.error = true;
